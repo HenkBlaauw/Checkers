@@ -16,12 +16,16 @@ class State{
     addStore(){
         return;
     }
+
     getStore() {
         return this.store;
     }
 
+    getData(){
 
+        
 
-
+    
+    }
 }
 module.exports = State;

@@ -12,6 +12,15 @@ add_store_ManName : 5,
 add_store_telno : 6
 }
 
+var hardcodeStores = [
+    {
+        name : "Checkers Durbanville",
+        telno : 021
+    }
+]
+
+
+
 var state = new State();
 state.initialize(Screens.main_menu);
 console.log("***********************************\nWelcome to the checkers application\n***********************************")
