@@ -15,7 +15,7 @@ add_store_telno : 6
 var hardcodeStores = [
     {
         name : "Checkers Durbanville",
-        telno : 021
+        telno : "+27 9704"
     }
 ]
 
