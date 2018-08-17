@@ -31,6 +31,7 @@ stdin.addListener("data", function(a){
         }
 
         else if(a == 2 || a == '2') {
+            console.log("Here i am in edit");
             state.setCurrentScreen(Screens.edit_store);
 
         }
@@ -55,18 +56,18 @@ stdin.addListener("data", function(a){
             }
         }
 
-        if(state.getCurrentScreen() == screen.add_store){
+        if(state.getCurrentScreen() == Screens.add_store){
             console.log("this is the add store screen");
-            state.setCurrentScreen(screen.main_menu)
+            state.setCurrentScreen(Screens.main_menu);
         }
 
-        else if (state.getCurrentScreen() == screen.edit_store){
+        else if (state.getCurrentScreen() == Screens.edit_store){
             console.log("This is the edit store screen");
-            state.setCurrentScreen(screen.main_menu)
+            state.setCurrentScreen(Screens.main_menu);
         }
 
 
 
-        screen.displayMenuForScreen(state.getCurrentScreen);
+        screen.displayMenuForScreen(state.getCurrentScreen());
     });
 
