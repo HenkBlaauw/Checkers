@@ -38,7 +38,9 @@ var state = new State();
 state.initialize(Screens.main_menu);
 console.log("***********************************\nWelcome to the checkers application\n***********************************")
 screen.displayMenuForScreen(state.getCurrentScreen());
-
+if( hardcodeStores.name == "Checkers Durbanville"){
+    console.log("Moo");
+}
 stdin.addListener("data", function(a){
     if(isNaN(a) || a>4){
         console.log("Please enter a number that is in the menu!");
@@ -88,7 +90,7 @@ stdin.addListener("data", function(a){
             state.setCurrentScreen(Screens.main_menu);
         }
 
-
+       
 
         screen.displayMenuForScreen(state.getCurrentScreen());
     });
