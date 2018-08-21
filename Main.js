@@ -1,6 +1,7 @@
 var screen =   require('./Screens.js');
 var State = require('./State.js');
 var stdin = process.openStdin();
+var Stores = require('./Stores.js');
 
 var Screens = {
 main_menu : 0,
