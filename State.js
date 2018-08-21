@@ -1,8 +1,8 @@
-class State{
-    
+class State {
+
     initialize(screen) {
         this.currentScreen = screen;
-        
+
     }
 
     setCurrentScreen(screen) {
@@ -13,7 +13,7 @@ class State{
         return this.currentScreen;
     }
 
-    addStore(){
+    addStore() {
         return;
     }
 
@@ -21,11 +21,11 @@ class State{
         return this.store;
     }
 
-    getData(){
+    getData() {
 
-        
 
-    
+
+
     }
 }
 module.exports = State;
