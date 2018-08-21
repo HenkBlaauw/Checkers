@@ -1,23 +1,23 @@
 Stores = require('./Stores.js');
 
-
-stores = new Stores();
-
-
-
 class StoreInfo {
 
-    initialize(name){
-this.name= stores.hardcodestores.name;
-this.manager = stores.hardcodestores.managerName;
-this.telephone = stores.hardcodestores.telno;
-this.address = (stores.hardcodestores.addressStreet + stores.hardcodestores.addressSuburb + stores.hardcodestores.addressCity);
-
-
-
+    initialize(name) {
+        this.name = stores.hardcodestores.name;
+        this.managers = stores.hardcodestores.managerName;
+        this.telephones = stores.hardcodestores.telno;
+        this.address = (stores.hardcodestores.addressStreet + stores.hardcodestores.addressSuburb + stores.hardcodestores.addressCity);
     }
 
-
-
+    addManager(manager) {
+        this.managers.push(manager);
+    }
+    addTel(telephone) {
+        this.telephones.push(telephone);
+    }
+    addAddress(address) {
+        this.address.push(address);
+    }
 
 }
+module.exports= StoreInfo;

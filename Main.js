@@ -2,6 +2,7 @@ var screen =   require('./Screens.js');
 var State = require('./State.js');
 var stdin = process.openStdin();
 var Stores = require('./Stores.js');
+var StoreInfo = require('./StoreInfo.js');
 
 var Screens = {
 main_menu : 0,
@@ -13,7 +14,7 @@ add_store_ManName : 5,
 add_store_telno : 6
 }
 
-
+var storeinfo = new StoreInfo();
 var stores = new Stores();
 
 var state = new State();
