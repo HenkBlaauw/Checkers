@@ -10,12 +10,16 @@ var Screens = {
     add_store_name: 3,
     add_store_address: 4,
     add_store_ManName: 5,
-    add_store_telno: 6
+    add_store_telno: 6,
+    adress_road: 7,
+    adress_suburb: 8,
+    adress_city:9,
+    adress_code: 10
 }
 
-store = new StoreInfo;
+/* store = new StoreInfo;
 var info = store.getHardCode();
-console.log(info);
+console.log(info); */
 
 
 
@@ -74,7 +78,38 @@ stdin.addListener("data", function (a) {
         console.log("This is the edit store screen");
         state.setCurrentScreen(Screens.main_menu);
     }
-
+    else if(state.getCurrentScreen() == Screens.add_store_name){
+        console.log("Here you should add the store's name");
+        state.setCurrentScreen(Screens.add_store_ManName);
+    }
+    else if (state.getCurrentScreen() == Screens.add_store_ManName){
+        console.log("Here you should add the manager's name");
+        state.setCurrentScreen(Screens.add_store_telno);
+    }
+    else if(state.getCurrentScreen() == Screens.add_store_telno){
+        console.log("Here you should add the store's telephone number");
+        state.setCurrentScreen(Screens.add_store_address);
+    }
+    else if(state.getCurrentScreen() == Screens.add_store_address){
+        console.log("Here you will add the adress");
+        state.setCurrentScreen(Screens.adress_road);
+    }
+    else if(state.getCurrentScreen() == Screens.adress_road){
+        console.log("Here you will add the street adress");
+        state.setCurrentScreen(Screens.adress_suburb);
+    }
+    else if(state.getCurrentScreen() == Screens.adress_suburb){
+        console.log("Here you will add the suburb");
+        state.setCurrentScreen(Screens.adress_city);
+    }
+    else if(state.getCurrentScreen() == Screens.adress_city){
+        console.log("Here you will add the city where the shop is located");
+        state.setCurrentScreen(Screens.adress_code);
+    }
+    else if(state.getCurrentScreen() == Screens.adress_code){
+        console.log("Here you will add the city's code, e.g. 6850");
+        state.setCurrentScreen(Screens.main_menu);
+    }
 
 
     screen.displayMenuForScreen(state.getCurrentScreen());

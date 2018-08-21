@@ -24,5 +24,17 @@ module.exports = {
         else if (screen == 6) {
             console.log("Please enter the store's telephone number");
         }
+        else if (screen == 7){
+            console.log("Please enter the road and number the store is on");
+        }
+        else if (screen == 8){
+            console.log("Please enter the suburb where the store is located at");
+        }
+        else if (screen == 9){
+            console.log("Please enter the city where the shop is located");
+        }
+        else if (screen == 10){
+            console.log("Please enter the 4-digit code of the adress, e.g. 6850");
+        }
     }
 }
