@@ -2,7 +2,7 @@ class State{
     
     initialize(screen) {
         this.currentScreen = screen;
-        
+        this.storear = [];
     }
 
     setCurrentScreen(screen) {
@@ -18,14 +18,7 @@ class State{
     }
 
     getStore() {
-        return this.store;
-    }
-
-    getData(){
-
-        
-
-    
+        return this.storear;
     }
 }
 module.exports = State;

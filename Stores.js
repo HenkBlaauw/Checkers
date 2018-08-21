@@ -1,63 +1,48 @@
-var hardcodestores = [{
-    name: "Checkers Durbanville",
-    managerName: "Hannelet Cloete",
-    telno: "09704",
-    addressStreet: "13 Wellington Road",
-    addressSuburb: "Durbanville",
-    addressCity: "Cape Town",
-    addressNum: "7550"
-
-},
-{
-    name: "Checkers Kloof Street",
-    managerName: "Hugo Du Pleez",
-    telno: "0214805680",
-    addressStreet: "Cnr Kloof and Welterveden Street",
-    addressSuburb: "Tamboerskloof",
-    addressCity: "Cape Town",
-    addressNum: "8001"
-
-}
-]
-
-
-
 class Stores {
 
-
     initialize(storeName) {
-        console.log(storeName);
-        this.storeName = storeName;
 
+        this.storeName = storeName;
     }
 
 
-    /* getHardCode(example) {
-        example = String("hardcodestores");
-        return example;
-    } */
+    addManager(manager) {
+        this.manager = manager;
+    }
+    addTel(telephone) {
+        this.telephone = telephone;
+    }
+    addAddress(address) {
+        this.address = address;
+    }
 
     addStore(store) {
         this.store.push(store);
-
     }
 
-    getStore() {
+    addStreet(street) {
+        this.street = street;
+    }
 
-        var i = 0;
-        for (i = 0; i < hardcodestores.length; i++) {
-            console.log("Store's name: " + hardcodestores[i].name);
-            console.log("Manager's name: " + hardcodestores[i].managerName);
-            console.log("Telephone number: " + hardcodestores[i].telno);
-            console.log("Address: " + hardcodestores[i].addressStreet + " ," + hardcodestores[i].addressSuburb + ", " + hardcodestores[i].addressCity + ", " + hardcodestores[i].addressNum);
-            console.log("***************************************************************************");
-        }
-       
+    addSuburb(suburb) {
+        this.suburb = suburb;
+    }
 
+    addCity(city) {
+        this.city = city;
+    }
 
-
-        return this.store;
+    addRegionCode(code) {
+        this.code = code;
     }
 
 }
 module.exports = Stores;
+
+
+/* for(i = 0 ; i< state.getStore().length; i++){
+    var currentStore = state.getStore()[i];
+    console.log(currentStore);
+    state.storear.push(store1);
+state.storear.push(store2);
+} */
