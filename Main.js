@@ -21,7 +21,7 @@ console.log(info);
 
 var state = new State();
 state.initialize(Screens.main_menu);
-console.log("***********************************\nWelcome to the checkers application\n***********************************")
+console.log("***********************************\nWelcome to the Checkers App\n***********************************")
 screen.displayMenuForScreen(state.getCurrentScreen());
 /* if (hardcodestores.name == "Checkers Durbanville") {
     console.log("Moo");
