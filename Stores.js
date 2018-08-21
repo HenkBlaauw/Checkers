@@ -1,19 +1,21 @@
 var hardcodestores = [{
     name: "Checkers Durbanville",
+    managerName: "Hannelet Cloete",
     telno: "09704",
-    adressStreet: "13 Wellington Road",
-    adressSuburb: "Durbanville",
-    adressCity: "Cape Town",
-    adressNum: "7550"
+    addressStreet: "13 Wellington Road",
+    addressSuburb: "Durbanville",
+    addressCity: "Cape Town",
+    addressNum: "7550"
 
 },
 {
     name: "Checkers Kloof Street",
+    managerName: "Hugo Du Pleez",
     telno: "0214805680",
-    adressStreet: "Cnr Kloof and Welterveden Street",
-    adressSuburb: "Tamboerskloof",
-    adressCity: "Cape Town",
-    adressNum: "8001"
+    addressStreet: "Cnr Kloof and Welterveden Street",
+    addressSuburb: "Tamboerskloof",
+    addressCity: "Cape Town",
+    addressNum: "8001"
 
 }
 ]
@@ -30,10 +32,10 @@ class Stores {
     }
 
 
-    getHardCode(example) {
-        example = String(hardcodestores);
+    /* getHardCode(example) {
+        example = String("hardcodestores");
         return example;
-    }
+    } */
 
     addStore(store) {
         this.store.push(store);
@@ -41,6 +43,19 @@ class Stores {
     }
 
     getStore() {
+
+        var i = 0;
+        for (i = 0; i < hardcodestores.length; i++) {
+            console.log("Store's name: " + hardcodestores[i].name);
+            console.log("Manager's name: " + hardcodestores[i].managerName);
+            console.log("Telephone number: " + hardcodestores[i].telno);
+            console.log("Address: " + hardcodestores[i].addressStreet + " ," + hardcodestores[i].addressSuburb + ", " + hardcodestores[i].addressCity + ", " + hardcodestores[i].addressNum);
+            console.log("***************************************************************************");
+        }
+       
+
+
+
         return this.store;
     }
 

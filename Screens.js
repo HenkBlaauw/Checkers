@@ -16,7 +16,7 @@ module.exports = {
             console.log("Please add the store's name");
         }
         else if(screen == 4){
-            console.log("Please enter the store's adress");
+            console.log("Please enter the store's address");
         }
         else if(screen == 5){
             console.log("Please enter the store's manager's name");

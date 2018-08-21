@@ -14,8 +14,7 @@ add_store_telno : 6
 }
 
 
-
-
+var stores = new Stores();
 
 var state = new State();
 state.initialize(Screens.main_menu);
@@ -23,20 +22,22 @@ console.log("***********************************\nWelcome to the checkers applic
 screen.displayMenuForScreen(state.getCurrentScreen());
 
 stdin.addListener("data", function(a){
-    if(isNaN(a) || a>4){
-        console.log("Please enter a number that is in the menu!");
-    }
+    
 
     if(state.getCurrentScreen() == Screens.main_menu){
 
+        if(isNaN(a) || a>4){
+            console.log("Please enter a number that is in the menu!");
+        }
+
         if(a == 1 || a == '1'){
-            console.log("here i am");
+           
             state.setCurrentScreen(Screens.add_store);
 
         }
 
         else if(a == 2 || a == '2') {
-            console.log("Here i am in edit");
+           
             state.setCurrentScreen(Screens.edit_store);
 
         }
@@ -44,11 +45,14 @@ stdin.addListener("data", function(a){
         else if(a == 3 || a == '3') {
             console.log("\n\nCurrent added stores:\n");
 
-            for(var i = 0; i < state.getStore().length; i++) {
+            /* for(var i = 0; i < state.getStore().length; i++) {
                 var currentStore = state.getStore()[i];
                 var StoreName = currentStore.name;
                 console.log(StoreName);
-            }
+            } */
+            var show = stores.getStore();
+            //console.log(show);
+            
         }
         else if(a == 4 || a == '4') {
             console.log("Buenos Noches!");
