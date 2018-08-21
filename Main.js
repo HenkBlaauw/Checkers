@@ -21,7 +21,7 @@ var Screens = {
 var info = store.getHardCode();
 console.log(info); */
 
-
+var currentStore ={};
 
 var state = new State();
 state.initialize(Screens.main_menu);
@@ -31,12 +31,12 @@ screen.displayMenuForScreen(state.getCurrentScreen());
     console.log("Moo");
 } */
 stdin.addListener("data", function (a) {
-    if (isNaN(a) || a > 4) {
-        console.log("Please enter a number that is in the menu!");
-    }
+    
 
     if (state.getCurrentScreen() == Screens.main_menu) {
-
+        if (isNaN(a) || a > 4) {
+            console.log("Please enter a number that is in the menu!");
+        }
         if (a == 1 || a == '1') {
             console.log("here i am");
             state.setCurrentScreen(Screens.add_store);
@@ -71,7 +71,7 @@ stdin.addListener("data", function (a) {
 
     if (state.getCurrentScreen() == Screens.add_store) {
         console.log("this is the add store screen");
-        state.setCurrentScreen(Screens.main_menu);
+        state.setCurrentScreen(Screens.add_store_name);
     }
 
     else if (state.getCurrentScreen() == Screens.edit_store) {
@@ -79,7 +79,11 @@ stdin.addListener("data", function (a) {
         state.setCurrentScreen(Screens.main_menu);
     }
     else if(state.getCurrentScreen() == Screens.add_store_name){
+        var prop = 'name';
         console.log("Here you should add the store's name");
+        prop = "'" + a.toString().trim() + ", '";
+        currentStore.name = prop;
+        console.log(currentStore[name]);
         state.setCurrentScreen(Screens.add_store_ManName);
     }
     else if (state.getCurrentScreen() == Screens.add_store_ManName){
