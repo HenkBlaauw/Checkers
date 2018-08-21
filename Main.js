@@ -13,7 +13,6 @@ var Screens = {
     add_store_ManName: 5,
     add_store_telno: 6
 }
-/* store = new Stores(); */
 
 var store1 = new Stores();
 store1.initialize("Checkers Durbanville");
@@ -71,11 +70,13 @@ stdin.addListener("data", function (a) {
 
         else if (a == 3 || a == '3') {
             console.log("\n\nCurrent added stores:\n");
-            for(i = 0; i < state.getStore().length;i++){
+            for (i = 0; i < state.getStore().length; i++) {
                 var presentStore = state.storear[i];
-                console.log(presentStore);
+                state.addStore(presentStore);
+                
+
             }
-           
+            console.log(state.storear);
 
         }
         else if (a == 4 || a == '4') {
