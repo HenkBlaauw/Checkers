@@ -10,7 +10,7 @@ module.exports = {
         }
         //Edit a store
         else if (screen == 2){
-            console.log("This is the edit store page");
+            console.log("Which store's details would you like to edit?");
         }
         else if(screen == 3){
             console.log("Please add the store's name");
@@ -23,6 +23,9 @@ module.exports = {
         }
         else if(screen == 6){
             console.log("Please enter the store's telephone number");
+        }
+        else if(screen == 7){
+            console.log("Would you like to Edit...\n1. Store's name\n2. Store's address\n3. Store's manager's name\n4. Store's telephone number\n5. Return to Main Menu");
         }
     }
 }
