@@ -27,14 +27,17 @@ module.exports = {
         else if(screen == 7){
             console.log("Would you like to Edit...\n1. Store's name\n2. Store's address\n3. Store's manager's name\n4. Store's telephone number\n5. Return to Main Menu");
         }
+        else if(screen == 8){
+            console.log("\nChange the name of the store or enter exit to go back");
+        }
+        else if(screen == 9){
+            console.log("\nChange the address of the store or enter exit to go back");
+        }
+        else if (screen == 10){
+            console.log("\nChange the manager name of the store or enter exit to go back");
+        }
+        else if (screen == 11){
+            console.log("\nChange the telephone number of the store or enter exit to go back");
+        }
     }
 }
-/* var Screens = {
-    main_menu: 0,
-    add_store: 1,
-    edit_store: 2,
-    add_store_name: 3,
-    add_store_address: 4,
-    add_store_ManName: 5,
-    add_store_telno: 6
-} */

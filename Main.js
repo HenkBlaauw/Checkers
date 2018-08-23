@@ -12,6 +12,12 @@ var Screens = {
     add_store_address: 4,
     add_store_ManName: 5,
     add_store_telno: 6,
+    edit_store_main: 7,
+    edit_store_name: 8,
+    edit_store_address: 9,
+    edit_store_manname: 10,
+    edit_store_telno: 11
+
 }
 
 var store1 = new Stores();
@@ -43,8 +49,7 @@ var state = new State();
 state.initialize(Screens.main_menu);
 state.storear.push(store1);
 state.storear.push(store2);
-
-
+console.log(state.storear);
 
 
 console.log("***********************************\nWelcome to the checkers application\n***********************************")
@@ -66,8 +71,12 @@ stdin.addListener("data", function (a) {
         }
 
         else if (a == 2 || a == '2') {
+            for (i = 0; i < state.getStore().length; i++) {
+                var populatedstores = state.getStore()[i];
+                var storeTitle = populatedstores.storeName;
+                console.log(i + ". " + storeTitle);
+            }
             state.setCurrentScreen(Screens.edit_store);
-
         }
 
         else if (a == 3 || a == '3') {
@@ -101,14 +110,53 @@ stdin.addListener("data", function (a) {
     }
 
     else if (state.getCurrentScreen() == Screens.edit_store) {
-        console.log("This is the edit store screen");
-        state.setCurrentScreen(Screens.main_menu);
+
+        if (isNaN(a)) {
+            console.log("Please enter a number");
+        }
+        else if (a.toString().trim() < 0 || a.toString().trim() > state.getStore().length) {
+            console.log("The number you have entered is not a present store");
+            state.setCurrentScreen(Screens.edit_store);
+        }
+        var StoreNumber = parseInt(a);
+        stores = state.getStore()[StoreNumber].storeName
+        console.log(state.getStore()[StoreNumber].storeName);
+        state.setCurrentScreen(Screens.edit_store_main);
+
     }
 
-    else if (state.getCurrentScreen() == Screen.add_store_address) {
+    else if (state.getCurrentScreen() == Screens.edit_store_main) {
+        if (isNaN(a.toString().trim())) {
+            console.log("Please enter a number");
+           
+        }
 
+        if (a == 1 || a == '1') { 
+            console.log(store1);
+            // var varString = "";
+            //state.setCurrentScreen(Screens.edit_store_name);
+            //if (varString == 'EXIT' || varString == 'exit') {
+            //  state.setCurrentScreen(Screens.edit_store_main);
+            // var newValue = Stores.storeName;
+            //eval(varString + " = " + "'" + newValue + "'");
+            // }
+            // }
+        }
 
+        else if (a == 2 || a == '2') {
+            state.setCurrentScreen(Screens.edit_store_address);
+        }
+
+        else if (a == 3 || a == '3') {
+            state.setCurrentScreen(Screens.edit_store_manname)
+        }
+
+        else if (a == 4 || a == '4') {
+            state.setCurrentScreen(Screens.edit_store_telno)
+        }
+        else if (a == 5 || a == '5') {
+            state.setCurrentScreen(Screens.main_menu)
+        }
     }
-
     screen.displayMenuForScreen(state.getCurrentScreen());
 });
