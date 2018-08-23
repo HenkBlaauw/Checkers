@@ -16,7 +16,7 @@ module.exports = {
             console.log("Please enter the store's adress");
         }
         else if(screen == 4){
-            console.log("Please enter the store's address");
+            console.log("Please enter the store's street address");
         }
         else if (screen == 5) {
             console.log("Please enter the store's manager's name");
@@ -25,16 +25,16 @@ module.exports = {
             console.log("Please enter the store's telephone number");
         }
         else if (screen == 7){
-            console.log("Please enter the road and number the store is on");
+            console.log("Please enter the suburb in which the store is located");
         }
         else if (screen == 8){
-            console.log("Please enter the suburb where the store is located at");
+            console.log("Please enter the city in which the store is located");
         }
         else if (screen == 9){
-            console.log("Please enter the city where the shop is located");
+            console.log("Please enter the region code in which the store is located");
         }
         else if (screen == 10){
-            console.log("Please enter the 4-digit code of the adress, e.g. 6850");
+            console.log("Press enter to see full address");
         }
     }
 }
@@ -45,5 +45,9 @@ module.exports = {
     add_store_name: 3,
     add_store_address: 4,
     add_store_ManName: 5,
-    add_store_telno: 6
+    add_store_telno: 6,
+    adress_road: 7,
+    adress_suburb : 8,
+    adress_city: 9,
+    adress_code: 10
 } */

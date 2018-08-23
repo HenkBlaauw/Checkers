@@ -11,7 +11,11 @@ var Screens = {
     add_store_name: 3,
     add_store_address: 4,
     add_store_ManName: 5,
-    add_store_telno: 6
+    add_store_telno: 6,
+    adress_road: 7,
+    adress_suburb : 8,
+    adress_city: 9,
+    adress_code: 10
 }
 
 var store1 = new Stores();
@@ -105,51 +109,71 @@ stdin.addListener("data", function (a) {
         console.log("This is the edit store screen");
         state.setCurrentScreen(Screens.main_menu);
     }
-
-    else if(state.getCurrentScreen() == Screen.add_store_adress){
-       
-    }
-
-
-    else if (state.getCurrentScreen() == Screens.edit_store) {
-        console.log("This is the edit store screen");
-        state.setCurrentScreen(Screens.main_menu);
-    }
-    else if(state.getCurrentScreen() == Screens.add_store_name){
-        var prop = 'name';
+    /* else if(state.getCurrentScreen() == Screens.add_store_name){
+        var sName = 'name';
         console.log("Here you should add the store's name");
         prop = "'" + a.toString().trim() + ", '";
         currentStore.name = prop;
         console.log(currentStore[name]);
         state.setCurrentScreen(Screens.add_store_ManName);
-    }
+    } */
     else if (state.getCurrentScreen() == Screens.add_store_ManName){
-        console.log("Here you should add the manager's name");
+        sManName = a.toString().trim();
+        newStore.addManager(sManName);
+        console.log("Adding manager name of: "+ newStore.manager);
         state.setCurrentScreen(Screens.add_store_telno);
     }
     else if(state.getCurrentScreen() == Screens.add_store_telno){
-        console.log("Here you should add the store's telephone number");
-        state.setCurrentScreen(Screens.add_store_address);
+        sTelNo = a.toString().trim();
+        if(isNaN(sTelNo) && sTelNo.length<= 10){
+            console.log("Please enter a number which has 10 numbers in, no more");
+            state.setCurrentScreen(Screens.add_store_telno);
+        }
+        else{
+            newStore.addTell(sTelNo);
+        console.log("Store's current telephone number is: "+ sTelNo);
+        state.setCurrentScreen(Screens.main_menu);
+        }
+        
     }
     else if(state.getCurrentScreen() == Screens.add_store_address){
-        console.log("Here you will add the adress");
+        var sAdress = a.toString().trim();
+        newStore.addStreet(sAdress);
+        console.log("Adding store's street adress: "+ sAdress);
+
         state.setCurrentScreen(Screens.adress_road);
     }
     else if(state.getCurrentScreen() == Screens.adress_road){
-        console.log("Here you will add the street adress");
+        sSuburb = a.toString().trim();
+        newStore.addSuburb(sSuburb);
+        console.log("Adding suburb with name: "+ sSuburb);
         state.setCurrentScreen(Screens.adress_suburb);
     }
     else if(state.getCurrentScreen() == Screens.adress_suburb){
-        console.log("Here you will add the suburb");
+        sCity = a.toString().trim();
+        newStore.addCity(sCity);
+        console.log("Adding city with name: "+ sCity);
         state.setCurrentScreen(Screens.adress_city);
     }
     else if(state.getCurrentScreen() == Screens.adress_city){
-        console.log("Here you will add the city where the shop is located");
-        state.setCurrentScreen(Screens.adress_code);
+        if(isNaN(a.toString().trim())){
+            console.log("Please enter a number!");
+            state.setCurrentScreen(Screens.adress_city);
+        }
+        else{
+            sCode = a.toString().trim();
+            newStore.addRegionCode(sCode);
+            console.log("Adding city code of: "+ sCode);
+            state.setCurrentScreen(Screens.adress_code);
+        
+    
+    }
     }
     else if(state.getCurrentScreen() == Screens.adress_code){
-        console.log("Here you will add the city's code, e.g. 6850");
-        state.setCurrentScreen(Screens.main_menu);
+        newStore.addAddress(newStore.street + "\n"+ newStore.suburb + "\n"+ newStore.city + "\n"+ newStore.code);
+        newStore.address = newStore.street + "\n"+ newStore.suburb + "\n"+ newStore.city + "\n"+ newStore.code;
+        console.log("The current adress is: "+ newStore.address);
+        state.setCurrentScreen(Screens.add_store_ManName);
     }
 
 

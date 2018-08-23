@@ -1,43 +1,3 @@
-<<<<<<< HEAD
-
-
-
-var hardcodestores = [{
-    name: "Checkers Durbanville",
-    telno: "09704",
-    adressStreet: "13 Wellington Road",
-    adressSuburb: "Durbanville",
-    adressCity: "Cape Town",
-    adressNum: "7550"
-
-},
-{
-    name: "Checkers Kloof Street",
-    telno: "0214805680",
-    adressStreet: "Cnr Kloof and Welterveden Street",
-    adressSuburb: "Tamboerskloof",
-    adressCity: "Cape Town",
-    adressNum: "8001"
-
-}
-]
-
-
-
-class Stores {
-
-
-    initialize(storeName) {
-        console.log(storeName);
-        this.storeName = storeName;
-
-    }
-
-
-    getHardCode(example) {
-        example = String(hardcodestores);
-        return example;
-=======
 class Stores {
 
     initialize(storeName) {
@@ -54,22 +14,10 @@ class Stores {
     }
     addAddress(address) {
         this.address = address;
->>>>>>> development
     }
 
     addStore(store) {
         this.store.push(store);
-<<<<<<< HEAD
-
-    }
-
-    getStore() {
-        return this.store;
-    }
-
-}
-module.exports = Stores;
-=======
     }
 
     addStreet(street) {
@@ -98,4 +46,3 @@ module.exports = Stores;
     state.storear.push(store1);
 state.storear.push(store2);
 } */
->>>>>>> development
