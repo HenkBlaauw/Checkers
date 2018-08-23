@@ -1,7 +1,8 @@
 var screen = require('./Screens.js');
 var State = require('./State.js');
 var stdin = process.openStdin();
-var StoreInfo = require('./Stores.js');
+var Stores = require('./Stores.js');
+
 
 var Screens = {
     main_menu: 0,
@@ -14,19 +15,13 @@ var Screens = {
     edit_store_main: 7
 }
 
-store = new StoreInfo;
-var info = store.getHardCode();
-console.log(info);
-
 
 
 var state = new State();
 state.initialize(Screens.main_menu);
 console.log('\x1b[36m%s\x1b[0m', "***********************************\nWelcome to the Checkers App\n***********************************", "\x1b[37m")
 screen.displayMenuForScreen(state.getCurrentScreen());
-/* if (hardcodestores.name == "Checkers Durbanville") {
-    console.log("Moo");
-} */
+
 stdin.addListener("data", function (a) {
     if (isNaN(a) || a > 4) {
         console.log("Please enter a number that is in the menu!");
@@ -36,84 +31,104 @@ stdin.addListener("data", function (a) {
 
         if (a == 1 || a == '1') {
             console.log("here i am");
-            state.setCurrentScreen(Screens.add_store);
 
         }
 
-        else if (a == 2 || a == '2') {
-            state.setCurrentScreen(Screens.edit_store);
+        var store1 = new Stores();
+        store1.initialize("Checkers Durbanville");
+        store1.addManager("Hannelet Cloete");
+        store1.addStreet("13 Wellington Road");
+        store1.addSuburb("Durbanville");
+        store1.addCity("Cape Town");
+        store1.addRegionCode("7550");
+        store1.addAddress(store1.street + ", " + store1.suburb + ', ' + store1.city + ', ' + store1.code);
+        console.log(store1.storeName);
+        console.log(store1.manager);
+        console.log(store1);
 
-        }
 
-        else if (a == 3 || a == '3') {
-            console.log("\n\nCurrent added stores:\n");
+        var store2 = new Stores();
+        store2.initialize("Checkers Kloof Street");
+        store2.addManager("Hugo Du Preez");
+        store2.addStreet("Cnr Kloof and Weltevreden Street");
+        store2.addSuburb("Tamboerskloof");
+        store2.addCity("Cape Town");
+        store2.addRegionCode("8001");
+        store2.addAddress(store2.street + ", " + store2.suburb + ', ' + store2.city + ', ' + store2.code);
+        console.log(store2.storeName);
+        console.log(store2.manager);
+        console.log(store2);
 
-            for (var i = 0; i < state.getStore().length; i++) {
-                var currentStore = state.getStore()[i];
-                var StoreName = currentStore.name;
-                console.log(StoreName);
+        var state = new State();
+        state.initialize(Screens.main_menu);
+        state.storear.push(store1);
+        state.storear.push(store2);
+
+
+
+
+        console.log("***********************************\nWelcome to the checkers application\n***********************************")
+        screen.displayMenuForScreen(state.getCurrentScreen());
+
+        if (state.getCurrentScreen() == Screens.main_menu) {
+
+            if (isNaN(a) || a > 4) {
+                console.log("Please enter a number that is in the menu!");
+            }
+
+            if (a == 1 || a == '1') {
+
+
+                state.setCurrentScreen(Screens.add_store);
+
+            }
+
+            else if (a == 2 || a == '2') {
+                state.setCurrentScreen(Screens.edit_store);
+
+            }
+
+            else if (a == 3 || a == '3') {
+                console.log("\n\nCurrent added stores:\n");
+                for (i = 0; i < state.getStore().length; i++) {
+                    var presentStore = state.getStore()[i];
+                    var storeNamep = presentStore.storeName;
+                    //state.addStore(presentStore);
+                    console.log(storeNamep);
+                }
+                console.log("\n\n");
+
+            }
+            else if (a == 4 || a == '4') {
+                console.log("Buenos Noches!");
+                process.exit(0);
+            }
+            else {
+                console.log("Please choose an option from the menu");
+
+                console.log("\n");
             }
         }
-        else if (a == 4 || a == '4') {
-            console.log("\x1b[31m", "Buenos Noches!", "\x1b[37m");
-            process.exit(0);
-        }
-        else {
-            console.log("Please choose an option from the menu");
 
-            console.log("\n\n")
-        }
-    }
+        else if (state.getCurrentScreen() == Screens.add_store) {
 
-    if (state.getCurrentScreen() == Screens.add_store) {
-        console.log("this is the add store screen");
-        state.setCurrentScreen(Screens.main_menu);
-    }
-
-    else if (state.getCurrentScreen() == Screens.edit_store) {
-        if (isNaN(a)) {
-            console.log("Please enter a number");
-        }
-        else if (a.toString().trim < 0 || a.toString().trim() > state.getStore().length) {
-            console.log("The number you have entered is not a store");
-            state.getCurrentScreen(Screens.edit_store);
-        }
-        console.log("You've chosen" + Store.name);
-        state.getCurrentScreen(Screens.edit_store_main);
-        Store = state.getStore()[StoreName];
-
-    }
-    else if (state.setCurrentScreen(Screens.edit_store_main)) {
-        if(isNaN(d.toString().trim())){
-            console.log("Please enter a number");
-        }
-    
-        if (d == 1 || d == '1'){
-            state.setCurrentScreen(Screens.add_store_name);
-        }
-
-        if (d == 2 || d == '2'){
+            console.log("Adding store with name " + a.toString().trim());
+            newStore = new Stores();
+            newStore.initialize(a.toString().trim());
+            state.addStore(newStore);
             state.setCurrentScreen(Screens.add_store_address);
         }
-        
-        if (d == 3|| d == '3'){
-            state.setCurrentScreen(Screens.add_store_ManName);
+
+        else if (state.getCurrentScreen() == Screens.edit_store) {
+            console.log("This is the edit store screen");
+            state.setCurrentScreen(Screens.main_menu);
         }
-        
-        if (d == 5 || d == '5'){
-            state.setCurrentScreen(Screens.add_store_telno);	
-        }	
-        if (d == 4 || d == '4'){
-            console.log(StoreInfo.getStore());
-        } 
-        else if (d > 5 || d<0){
-            console.log("Please select something from the list");
-            state.setCurrentScreen(state.getCurrentScreen());
+
+        else if (state.getCurrentScreen() == Screen.add_store_adress) {
+
+
         }
+
+        screen.displayMenuForScreen(state.getCurrentScreen());
     }
-
-
-
-    screen.displayMenuForScreen(state.getCurrentScreen());
 });
-
