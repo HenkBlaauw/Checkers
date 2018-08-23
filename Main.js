@@ -124,15 +124,15 @@ stdin.addListener("data", function (a) {
         state.setCurrentScreen(Screens.add_store_telno);
     }
     else if(state.getCurrentScreen() == Screens.add_store_telno){
-        sTelNo = a.toString().trim();
-        if(isNaN(sTelNo) && sTelNo.length<= 10){
-            console.log("Please enter a number which has 10 numbers in, no more");
-            state.setCurrentScreen(Screens.add_store_telno);
+        storeTelNo = a.toString();
+        if(storeTelNo.charAt(0) == "0" && storeTelNo.length> 9){
+            newStore.addTel(storeTelNo);
+            console.log("Store's current telephone number is: "+ storeTelNo);
+            state.setCurrentScreen(Screens.main_menu);
         }
         else{
-            newStore.addTell(sTelNo);
-        console.log("Store's current telephone number is: "+ sTelNo);
-        state.setCurrentScreen(Screens.main_menu);
+            console.log("Please enter a number which has 10 numbers in, no more");
+            state.setCurrentScreen(Screens.add_store_telno);
         }
         
     }
@@ -172,7 +172,7 @@ stdin.addListener("data", function (a) {
     else if(state.getCurrentScreen() == Screens.adress_code){
         newStore.addAddress(newStore.street + "\n"+ newStore.suburb + "\n"+ newStore.city + "\n"+ newStore.code);
         newStore.address = newStore.street + "\n"+ newStore.suburb + "\n"+ newStore.city + "\n"+ newStore.code;
-        console.log("The current adress is: "+ newStore.address);
+        console.log("The current adress is: \n"+ newStore.address);
         state.setCurrentScreen(Screens.add_store_ManName);
     }
 
