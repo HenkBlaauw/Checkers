@@ -6,14 +6,14 @@ module.exports = {
         }
         //Add a store
         else if (screen == 1){
-            console.log("This is the add a store page");
+            console.log("Pleaser enter the store's name");
         }
         //Edit a store
         else if (screen == 2){
             console.log("This is the edit store page");
         }
         else if(screen == 3){
-            console.log("Please add the store's name");
+            console.log("Please enter the store's adress");
         }
         else if(screen == 4){
             console.log("Please enter the store's address");
@@ -26,3 +26,12 @@ module.exports = {
         }
     }
 }
+/* var Screens = {
+    main_menu: 0,
+    add_store: 1,
+    edit_store: 2,
+    add_store_name: 3,
+    add_store_address: 4,
+    add_store_ManName: 5,
+    add_store_telno: 6
+} */

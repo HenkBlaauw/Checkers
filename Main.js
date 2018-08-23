@@ -44,6 +44,9 @@ state.initialize(Screens.main_menu);
 state.storear.push(store1);
 state.storear.push(store2);
 
+
+
+
 console.log("***********************************\nWelcome to the checkers application\n***********************************")
 screen.displayMenuForScreen(state.getCurrentScreen());
 
@@ -71,12 +74,12 @@ stdin.addListener("data", function (a) {
         else if (a == 3 || a == '3') {
             console.log("\n\nCurrent added stores:\n");
             for (i = 0; i < state.getStore().length; i++) {
-                var presentStore = state.storear[i];
-                state.addStore(presentStore);
-                
-
+                var presentStore = state.getStore()[i];
+                var storeNamep = presentStore.storeName;
+                //state.addStore(presentStore);
+                console.log(storeNamep);
             }
-            console.log(state.storear);
+            console.log("\n\n");
 
         }
         else if (a == 4 || a == '4') {
@@ -86,19 +89,28 @@ stdin.addListener("data", function (a) {
         else {
             console.log("Please choose an option from the menu");
 
-            console.log("\n\n")
+            console.log("\n");
         }
     }
 
-    if (state.getCurrentScreen() == Screens.add_store) {
-        console.log("this is the add store screen");
-        state.setCurrentScreen(Screens.main_menu);
+    else if (state.getCurrentScreen() == Screens.add_store) {
+        
+        console.log("Adding store with name "+ a.toString().trim());
+        newStore = new Stores();
+        newStore.initialize(a.toString().trim());
+        state.addStore(newStore);
+        state.setCurrentScreen(Screens.add_store_address);
     }
 
     else if (state.getCurrentScreen() == Screens.edit_store) {
         console.log("This is the edit store screen");
         state.setCurrentScreen(Screens.main_menu);
     }
+
+    else if(state.getCurrentScreen() == Screen.add_store_adress){
+       
+    }
+
 
 
 

@@ -13,8 +13,8 @@ class State{
         return this.currentScreen;
     }
 
-    addStore(){
-        return;
+    addStore(presentStore){
+        return this.storear.push(presentStore);
     }
 
     getStore() {
