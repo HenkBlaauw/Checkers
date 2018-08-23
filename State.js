@@ -2,7 +2,7 @@ class State{
     
     initialize(screen) {
         this.currentScreen = screen;
-        
+        this.stores = [];
     }
 
     setCurrentScreen(screen) {
@@ -14,18 +14,14 @@ class State{
     }
 
     addStore(){
-        return;
+        this.stores.push(store);
     }
 
     getStore() {
         return this.store;
     }
 
-    getData(){
-
-        
-
-    
-    }
+          
 }
+
 module.exports = State;
