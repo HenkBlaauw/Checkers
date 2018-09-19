@@ -28,16 +28,16 @@ module.exports = {
             console.log("Would you like to Edit...\n1. Store's name\n2. Store's address\n3. Store's manager's name\n4. Store's telephone number\n5. Return to Main Menu");
         }
         else if(screen == 8){
-            console.log("\nChange the name of the store or enter exit to go back");
+            console.log("\nChange the name of the store");
         }
         else if(screen == 9){
-            console.log("\nChange the address of the store or enter exit to go back");
+            console.log("\nChange the address of the store");
         }
         else if (screen == 10){
-            console.log("\nChange the manager name of the store or enter exit to go back");
+            console.log("\nChange the manager name of the store");
         }
         else if (screen == 11){
-            console.log("\nChange the telephone number of the store or enter exit to go back");
+            console.log("\nChange the telephone number of the store");
         }
     }
 }

@@ -20,6 +20,7 @@ var Screens = {
 
 }
 
+//Hard Code
 var store1 = new Stores();
 store1.initialize("Checkers Durbanville");
 store1.addManager("Hannelet Cloete");
@@ -28,11 +29,9 @@ store1.addSuburb("Durbanville");
 store1.addCity("Cape Town");
 store1.addRegionCode("7550");
 store1.addAddress(store1.street + ", " + store1.suburb + ', ' + store1.city + ', ' + store1.code);
-console.log(store1.storeName);
-console.log(store1.manager);
-console.log(store1);
 
 
+//Hard Code
 var store2 = new Stores();
 store2.initialize("Checkers Kloof Street");
 store2.addManager("Hugo Du Preez");
@@ -41,33 +40,43 @@ store2.addSuburb("Tamboerskloof");
 store2.addCity("Cape Town");
 store2.addRegionCode("8001");
 store2.addAddress(store2.street + ", " + store2.suburb + ', ' + store2.city + ', ' + store2.code);
-console.log(store2.storeName);
-console.log(store2.manager);
-console.log(store2);
 
 var state = new State();
 state.initialize(Screens.main_menu);
 state.storear.push(store1);
 state.storear.push(store2);
-console.log(state.storear);
 
+
+for (i = 0; i < state.getStore().length; i++) {
+    var store = new Stores();
+    var currentStores = state.getStore()[i];
+    var storeDetails = currentStores;
+}
+store.initialize(storeDetails.storeName);
+store.addManager(storeDetails.manager);
+store.addStreet(storeDetails.street);
+store.addSuburb(storeDetails.suburb);
+store.addCity(storeDetails.city);
+store.addRegionCode(storeDetails.code);
+store.addAddress(storeDetails.street + ', ' + storeDetails.suburb + ', ' + storeDetails.city + ', ' + storeDetails.code);
+
+
+
+console.log(storeDetails);
 
 console.log("***********************************\nWelcome to the checkers application\n***********************************")
 screen.displayMenuForScreen(state.getCurrentScreen());
 
 stdin.addListener("data", function (a) {
+    var currentEditStoreNumber = parseInt(a);
 
     if (state.getCurrentScreen() == Screens.main_menu) {
-
         if (isNaN(a) || a > 4) {
             console.log("Please enter a number that is in the menu!");
         }
 
         if (a == 1 || a == '1') {
-
-
             state.setCurrentScreen(Screens.add_store);
-
         }
 
         else if (a == 2 || a == '2') {
@@ -80,11 +89,12 @@ stdin.addListener("data", function (a) {
         }
 
         else if (a == 3 || a == '3') {
+
             console.log("\n\nCurrent added stores:\n");
             for (i = 0; i < state.getStore().length; i++) {
                 var presentStore = state.getStore()[i];
-                var storeNamep = presentStore.storeName;
-                console.log(storeNamep);
+                var storeNameP = presentStore.storeName;
+                console.log(storeNameP);
             }
             console.log("\n\n");
 
@@ -118,45 +128,53 @@ stdin.addListener("data", function (a) {
             console.log("The number you have entered is not a present store");
             state.setCurrentScreen(Screens.edit_store);
         }
-        var StoreNumber = parseInt(a);
-        stores = state.getStore()[StoreNumber].storeName
-        console.log(state.getStore()[StoreNumber].storeName);
+        var stores = state.getStore()[currentEditStoreNumber].storeName;
+        console.log(stores);
         state.setCurrentScreen(Screens.edit_store_main);
-
     }
 
     else if (state.getCurrentScreen() == Screens.edit_store_main) {
         if (isNaN(a.toString().trim())) {
             console.log("Please enter a number");
-           
         }
+        if (a == 1 || a == '1') {
+            state.setCurrentScreen(Screens.edit_store_name);
 
-        if (a == 1 || a == '1') { 
-            console.log(store1);
-            // var varString = "";
-            //state.setCurrentScreen(Screens.edit_store_name);
-            //if (varString == 'EXIT' || varString == 'exit') {
-            //  state.setCurrentScreen(Screens.edit_store_main);
-            // var newValue = Stores.storeName;
-            //eval(varString + " = " + "'" + newValue + "'");
-            // }
-            // }
+            //state.setCurrentScreen(Screens.edit_store_main)
         }
-
         else if (a == 2 || a == '2') {
             state.setCurrentScreen(Screens.edit_store_address);
         }
-
         else if (a == 3 || a == '3') {
             state.setCurrentScreen(Screens.edit_store_manname)
         }
-
         else if (a == 4 || a == '4') {
             state.setCurrentScreen(Screens.edit_store_telno)
         }
         else if (a == 5 || a == '5') {
+            console.log("\nGoing Back.....\n\n");
             state.setCurrentScreen(Screens.main_menu)
         }
     }
+    else if (state.getCurrentScreen() == Screens.edit_store_name) {
+        store.storeName == '';
+        store.storeName == (a.toString().trim());
+        console.log(store.storeName);
+        state.setCurrentScreen(Screens.edit_store_main);
+        //console.log(store.initialize())
+    }
+
+    else if (state.getCurrentScreen() == Screens.edit_store_address) {
+
+    }
+
+    else if (state.getCurrentScreen() == Screens.edit_store_manname) {
+
+    }
+
+    else if (state.getCurrentScreen() == Screens.edit_store_telno) {
+
+    }
     screen.displayMenuForScreen(state.getCurrentScreen());
+
 });
