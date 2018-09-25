@@ -3,7 +3,6 @@ class State{
     initialize(screen) {
         this.currentScreen = screen;
         this.storear = [];
-        this.storage = [];
     }
 
     setCurrentScreen(screen) {
