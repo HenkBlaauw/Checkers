@@ -19,7 +19,12 @@ var Screens = {
     address_street: 12,
     address_suburb: 13,
     address_city: 14,
-    address_code: 15
+    address_code: 15,
+    address_add_street: 16,
+    address_add_suburb: 17,
+    address_add_city: 18,
+    address_add_code: 19,
+    full_address: 20
 }
 
 //Hard Code
@@ -98,12 +103,69 @@ stdin.addListener("data", function (a) {
     }
 
     else if (state.getCurrentScreen() == Screens.add_store) {
-
-        console.log("Adding store with name " + a.toString().trim());
+        console.log("Adding store with name: " + a.toString().trim(), '\n');
         newStore = new Stores();
         newStore.initialize(a.toString().trim());
         state.addStore(newStore);
-        state.setCurrentScreen(Screens.add_store_address);
+        state.setCurrentScreen(Screens.add_store_ManName);
+    }
+
+    else if (state.getCurrentScreen() == Screens.add_store_ManName) {
+        sManName = a.toString().trim();
+        newStore.addManager(sManName);
+        console.log("Adding manager name of: " + newStore.manager, '\n');
+        state.setCurrentScreen(Screens.add_store_telno);
+    }
+
+    else if (state.getCurrentScreen() == Screens.add_store_telno) {
+        storeTelNo = a.toString();
+        if (a.toString() >= 10) {
+            console.log("\nPlease enter the store's address\n");
+            state.setCurrentScreen(Screens.address_add_street);
+        }
+        else {
+            console.log("\nPlease enter a number which has 10 numbers in, no more");
+            state.setCurrentScreen(Screens.add_store_telno);
+        }
+    }
+
+    else if (state.getCurrentScreen() == Screens.address_add_street) {
+        var sAdress = a.toString().trim();
+        newStore.addStreet(sAdress);
+        console.log("Adding store's street adress: " + sAdress, '\n');
+        state.setCurrentScreen(Screens.address_add_suburb);
+    }
+    else if (state.getCurrentScreen() == Screens.address_add_suburb) {
+        sSuburb = a.toString().trim();
+        newStore.addSuburb(sSuburb);
+        console.log("Adding suburb with name: " + sSuburb, '\n');
+        state.setCurrentScreen(Screens.address_add_city);
+    }
+
+    else if (state.getCurrentScreen() == Screens.address_add_city) {
+        sCity = a.toString().trim();
+        newStore.addCity(sCity);
+        console.log("Adding city with name: " + sCity, '\n');
+        state.setCurrentScreen(Screens.address_add_code);
+    }
+
+    else if (state.getCurrentScreen() == Screens.address_add_code) {
+        if (isNaN(a.toString().trim())) {
+            state.setCurrentScreen(Screens.address_add_code);
+        }
+        else {
+            sCode = a.toString().trim();
+            newStore.addRegionCode(sCode);
+            console.log("Adding city code of: " + sCode, '\n');
+            state.setCurrentScreen(Screens.full_address);
+        }
+    }
+
+    else if (state.getCurrentScreen() == Screens.full_address) {
+        newStore.addAddress(newStore.street + "\n" + newStore.suburb + "\n" + newStore.city + "\n" + newStore.code);
+        newStore.address = newStore.street + "\n" + newStore.suburb + "\n" + newStore.city + "\n" + newStore.code;
+        console.log("The current adress is: \n" + newStore.address, '\n');
+        state.setCurrentScreen(Screens.main_menu);
     }
 
     else if (state.getCurrentScreen() == Screens.edit_store) {
@@ -126,6 +188,7 @@ stdin.addListener("data", function (a) {
         }
         console.log(stores.storeName);
         state.setCurrentScreen(Screens.edit_store_main);
+        
     }
 
     else if (state.getCurrentScreen() == Screens.edit_store_main) {
