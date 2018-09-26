@@ -1,5 +1,5 @@
-class State{
-    
+class State {
+
     initialize(screen) {
         this.currentScreen = screen;
         this.storear = [];

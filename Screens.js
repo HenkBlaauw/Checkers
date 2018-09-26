@@ -13,7 +13,7 @@ module.exports = {
             console.log("Which store's details would you like to edit?");
         }
         else if (screen == 3) {
-            console.log("Please enter the store's adress");
+            console.log("Please enter the store's name");
         }
         else if (screen == 4) {
             console.log("Please enter the store's address");
@@ -49,7 +49,22 @@ module.exports = {
             console.log("Change the city name of the store");
         }
         else if (screen == 15) {
-            console.log("Change the postal code of the store")
+            console.log("Change the region code of the store");
+        }
+        else if (screen == 16) {
+            console.log("Please enter the street in which the store is located");
+        }
+        else if (screen == 17) {
+            console.log("Please enter the suburb in which the store is located");
+        }
+        else if (screen == 18) {
+            console.log("Please enter the city in which the store is located");
+        }
+        else if (screen == 19) {
+            console.log("Please enter the region code in which the store is located");
+        }
+        else if (screen == 20){
+            console.log("Press enter to see full address")
         }
     }
 }
