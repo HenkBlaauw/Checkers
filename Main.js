@@ -54,7 +54,9 @@ var store = new Stores();
 console.log("\n***********************************\nWelcome to the checkers application\n***********************************")
 screen.displayMenuForScreen(state.getCurrentScreen());
 stdin.addListener("data", function (a) {
+
     var currentEditStoreNumber = parseInt(a);
+    var stores = state.getStore()[currentEditStoreNumber];
     if (state.getCurrentScreen() == Screens.main_menu) {
         if (isNaN(a) || a > 4) {
             console.log("Please enter a number that is in the menu!");
@@ -78,10 +80,10 @@ stdin.addListener("data", function (a) {
             console.log("\n\nCurrent added stores:\n");
             for (i = 0; i < state.getStore().length; i++) {
                 var presentStore = state.getStore()[i];
-                var storeNameP = presentStore.storeName;
+                var storeNameP = presentStore;
                 console.log(storeNameP);
             }
-            console.log("\n\n");
+            console.log("\n");
 
         }
         else if (a == 4 || a == '4') {
@@ -106,15 +108,14 @@ stdin.addListener("data", function (a) {
 
     else if (state.getCurrentScreen() == Screens.edit_store) {
 
-        var currentStores = state.getStore()[currentEditStoreNumber];
-        store.initialize(currentStores.storeName);
-        store.addManager(currentStores.manager);
-        store.addTel(currentStores.telephone);
-        store.addStreet(currentStores.street);
-        store.addSuburb(currentStores.suburb);
-        store.addCity(currentStores.city);
-        store.addRegionCode(currentStores.code);
-        store.addAddress(currentStores.street + ', ' + currentStores.suburb + ', ' + currentStores.city + ', ' + currentStores.code);
+        store.initialize(stores.storeName);
+        store.addManager(stores.manager);
+        store.addTel(stores.telephone);
+        store.addStreet(stores.street);
+        store.addSuburb(stores.suburb);
+        store.addCity(stores.city);
+        store.addRegionCode(stores.code);
+        store.addAddress(stores.street + ', ' + stores.suburb + ', ' + stores.city + ', ' + stores.code);
 
         if (isNaN(a)) {
             console.log("Please enter a number");
@@ -123,19 +124,18 @@ stdin.addListener("data", function (a) {
             console.log("The number you have entered is not a present store");
             state.setCurrentScreen(Screens.edit_store);
         }
-        var stores = state.getStore()[currentEditStoreNumber].storeName;
-        console.log(stores);
+        console.log(stores.storeName);
         state.setCurrentScreen(Screens.edit_store_main);
     }
 
     else if (state.getCurrentScreen() == Screens.edit_store_main) {
+
         if (isNaN(a.toString().trim())) {
             console.log("Please enter a number");
         }
         if (a == 1 || a == '1') {
             state.setCurrentScreen(Screens.edit_store_name);
             console.log('\n' + store.storeName);
-
         }
         else if (a == 2 || a == '2') {
             state.setCurrentScreen(Screens.edit_store_address);
@@ -156,10 +156,13 @@ stdin.addListener("data", function (a) {
     }
 
     else if (state.getCurrentScreen() == Screens.edit_store_name) {
+        var stores = state.getStore()[currentEditStoreNumber];
         var oldName = store.storeName;
         var newName = oldName.replace(oldName, (a.toString().trim()));
         store.storeName = newName;
-        console.log("The new name is: " + '\x1b[31m' + store.storeName + '\x1b[0m\n');
+        console.log("The new name is: " + '\x1b[31m' + store.storeName + '\x1b[0m\n');;
+        state.getStore().pop(currentEditStoreNumber);
+        state.getStore().push(store);
         state.setCurrentScreen(Screens.edit_store_main);
     }
 
@@ -193,6 +196,8 @@ stdin.addListener("data", function (a) {
         var newStreet = oldStreet.replace(oldStreet, (a.toString().trim()))
         store.street = newStreet;
         console.log("The new street name is:" + '\x1b[31m' + store.street + '\x1b[0m\n');
+        state.getStore().pop(currentEditStoreNumber);
+        state.getStore().push(store);
         state.setCurrentScreen(Screens.edit_store_address);
     }
 
@@ -201,6 +206,8 @@ stdin.addListener("data", function (a) {
         var newSuburb = oldSuburb.replace(oldSuburb, (a.toString().trim()))
         store.suburb = newSuburb;
         console.log("The new suburb name is:" + '\x1b[31m' + store.suburb + '\x1b[0m\n');
+        state.getStore().pop(currentEditStoreNumber);
+        state.getStore().push(store);
         state.setCurrentScreen(Screens.edit_store_address);
     }
 
@@ -209,6 +216,8 @@ stdin.addListener("data", function (a) {
         var newCity = oldCity.replace(oldCity, (a.toString().trim()))
         store.city = newCity;
         console.log("The new city name is:" + '\x1b[31m' + store.city + '\x1b[0m\n');
+        state.getStore().pop(currentEditStoreNumber);
+        state.getStore().push(store);
         state.setCurrentScreen(Screens.edit_store_address);
     }
 
@@ -216,17 +225,19 @@ stdin.addListener("data", function (a) {
         var oldCode = store.manager;
         var newCode = oldCode.replace(oldCode, (a.toString().trim()))
         store.code = newCode;
-        state.setCurrentScreen(Screens.edit_store_address);
-        
+
         if (isNaN(a.toString().trim())) {
             console.log("\xb1[31m", "NUMBERS ONLY!!!", "\xb1[31m");
             state.setCurrentScreen(Screens.address_code);
         }
-        if (a.toString() > 4) {
+        if (a.toString() >= 4) {
             console.log("You did not enter enough digits\n")
             state.setCurrentScreen(Screens.address_code);
         }
+        state.getStore().pop(currentEditStoreNumber);
+        state.getStore().push(store);
         console.log("The new postal code is:" + '\x1b[31m' + store.code + '\x1b[0m\n');
+        state.setCurrentScreen(Screens.edit_store_address);
     }
 
     else if (state.getCurrentScreen() == Screens.edit_store_manname) {
@@ -234,6 +245,8 @@ stdin.addListener("data", function (a) {
         var newManName = oldManName.replace(oldManName, (a.toString().trim()))
         store.manager = newManName;
         console.log("The new manager name is:" + '\x1b[31m' + store.manager + '\x1b[0m\n');
+        state.getStore().pop(currentEditStoreNumber);
+        state.getStore().push(store);
         state.setCurrentScreen(Screens.edit_store_main);
     }
 
@@ -242,18 +255,20 @@ stdin.addListener("data", function (a) {
         var oldTelNo = store.telephone;
         var newTelno = oldTelNo.replace(oldTelNo, (a.toString().trim()))
         store.telephone = newTelno;
-        state.setCurrentScreen(Screens.edit_store_main);
 
         if (isNaN(a.toString().trim())) {
             console.log("NUMBERS ONLY!!");
             state.setCurrentScreen(Screens.edit_store_telno);
         }
 
-        if (a.toString() > 10) {
+        if (a.toString() >= 10) {
             console.log("You did not enter enough digits\n");
             state.setCurrentScreen(Screens.edit_store_telno);
         }
+        state.getStore().pop(currentEditStoreNumber);
+        state.getStore().push(store);
         console.log("The new telephone number is:" + '\x1b[31m' + store.telephone + '\x1b[0m\n');
+        state.setCurrentScreen(Screens.edit_store_main);
     }
 
     screen.displayMenuForScreen(state.getCurrentScreen());

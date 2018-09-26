@@ -6,7 +6,7 @@ module.exports = {
         }
         //Add a store
         else if (screen == 1) {
-            console.log("Pleaser enter the store's name");
+            console.log("Please enter the store's name");
         }
         //Edit a store
         else if (screen == 2) {
