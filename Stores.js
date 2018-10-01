@@ -9,10 +9,7 @@ class Stores {
     addTel(telephone) {
         this.telephone = telephone;
     }
-    addAddress(address) {
-        this.address = address;
-    }
-
+   
     addStore(store) {
         this.store.push(store);
     }

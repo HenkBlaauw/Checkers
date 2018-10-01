@@ -63,7 +63,7 @@ module.exports = {
         else if (screen == 19) {
             console.log("Please enter the region code in which the store is located");
         }
-        else if (screen == 20){
+        else if (screen == 20 ){
             console.log("Press enter to see full address")
         }
     }

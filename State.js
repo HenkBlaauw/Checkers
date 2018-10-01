@@ -3,6 +3,7 @@ class State {
     initialize(screen) {
         this.currentScreen = screen;
         this.storear = [];
+        this.trackerArray = [];
     }
 
     setCurrentScreen(screen) {
@@ -19,6 +20,9 @@ class State {
 
     getStore() {
         return this.storear;
+    }
+    getTracker() {
+        return this.trackerArray;
     }
 }
 
